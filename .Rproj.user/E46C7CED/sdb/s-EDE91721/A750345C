@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "plot_state_map <- function(df){\n  \n  library(scales)\n  library(data.table)\n  library(plotly)\n  library(choroplethr)\n  library(choroplethrMaps)\n  library(dplyr)\n  library(foreach)\n  library(doMC)\n  library(snow) \n  library(doSNOW)\n  registerDoMC(cores=8)\n  registerDoSNOW(makeCluster(8, type=\"SOCK\")) \n  library(doParallel)\n  registerDoParallel(makeCluster(8))\n  \n  plot <- county_choropleth(select(df$mapping, c(2,4)),\n                            state_zoom = c(\"maryland\"),\n                            title = \"2013 Crime Choropleth Map\",\n                            legend = \"Crime level\")+\n    scale_fill_brewer(palette = \"OrRd\",\n                      type = \"seq\",\n                      # direction = -1, \n                      name = \"Crime Level\",\n                      labels = c(\"Very Low\",\"Low\",\"Medium\",\"High\",\"Very High\"))\n  \n  \n  state.map <- plot$data\n  state.codes <- sort(unique(state.map$region))\n  \n  foreach(i = 1:length(state.codes), .combine = rbind) %do% {\n    \n    filter(state.map, region == state.codes[i])%>%\n      summarize(\n        avg.long = mean(long),\n        avg.lat  = mean(lat))\n    \n  } -> text.locations \n  \n  state.names = c()\n  for (code in state.codes) {\n    \n    df <- filter(state.map, region == code)\n    state.names <- c(state.names, unique(df$NAME))\n  }; rm(df) \n  rm(code)\n  \n  text.locations <- data.table(text.locations,\n                               \"region\" = state.codes,\n                               \"label\" = state.names)\n  \n  \n  text.locations$label[which(text.locations$region == 24510)] <- \"Baltimore City\"\n  \n  rm(i); rm(state.map); rm(state.codes) ; rm(state.names)\n  \n\n  plot <- plot + geom_text(data = text.locations,\n                           aes(avg.long, avg.lat, label = label, group = NULL),\n                           color = 'black',size = 2.8,\n                           vjust=0.5, hjust=0.5, angle = 40)\n  \n  \n  plot <- plotly_build(plot)\n  foreach( i = 1:length(plot$data)) %do% {\n    # plot$data[[i]]$text <- paste(text.locations$label, \"<br>\")\n    plot$data[[i]]$hoverinfo <- \"none\"\n\n  };rm(text.locations)\n  \n  return(plot)\n}",
+    "created" : 1464659597577.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1216046035",
+    "id" : "A750345C",
+    "lastKnownWriteTime" : 1464660870,
+    "last_content_update" : 1464660870519,
+    "path" : "~/Documents/DataProjects/RStudio/Maryland Crime/plot_state_map.R",
+    "project_path" : "plot_state_map.R",
+    "properties" : {
+        "source_window_id" : "",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

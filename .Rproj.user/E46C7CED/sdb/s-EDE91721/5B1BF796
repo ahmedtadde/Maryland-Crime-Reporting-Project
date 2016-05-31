@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "# selected.year <- 2013\n# counties.data <- getCountiesData(selected.year)\n# state.data <- getStateData(selected.year)\n\n# main.graph <- plot_main_graph(state.data)\n# print(main.graph)\n\n# donut.graphs <- plot_donut_graphs(state.data)\n# print(donut.graphs$property)\n# print(donut.graphs$violent)\n\n\nstate.map <-  plot_state_map(counties.data)\nprint(state.map)\n \n# rm(selected.year)\n\n\n\n\n\n\n",
+    "created" : 1464585707506.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1933332256",
+    "id" : "5B1BF796",
+    "lastKnownWriteTime" : 1464660873,
+    "last_content_update" : 1464660873618,
+    "path" : "~/Documents/DataProjects/RStudio/Maryland Crime/Processing.R",
+    "project_path" : "Processing.R",
+    "properties" : {
+        "source_window_id" : "",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

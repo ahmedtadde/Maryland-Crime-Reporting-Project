@@ -3,7 +3,6 @@
 libraries <- function(){
   
   library(shiny)
-  # library(shinyapps)
   library(shinythemes)
   library(XLConnect)
   library(DataCombine)

@@ -1,26 +1,26 @@
-
+library(shinythemes)
 source('helpers.R')
-# Define UI for application that draws a histogram
 
-shinyUI(fluidPage(
-  
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
-    ),
-    
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("distPlot")
-    )
-  )
-))
+
+shinyUI(fluidPage(theme = shinytheme("united"),
+                  titlePanel("Maryland Crime Reporting"),
+                  sidebarLayout(
+                    sidebarPanel(helpText("Create choropleth of crime level"),
+                                  
+                                  selectInput("year", 
+                                              label = "Choose Year",
+                                              choices = seq(1975, 2013, 1),
+                                              selected = 1975)
+                                  
+                                  
+                    ),
+                    
+                    mainPanel(
+                      tabsetPanel(
+                        tabPanel("Map", plotOutput("map")), 
+                        tabPanel("Summary", verbatimTextOutput("summary")), 
+                        tabPanel("Table", tableOutput("table")))
+                    )
+                  )
+        ))
 

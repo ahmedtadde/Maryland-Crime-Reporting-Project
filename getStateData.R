@@ -1,17 +1,5 @@
 getStateData <- function(Year){
-  library(XLConnect)
-  library(data.table)
-  library(dplyr)
-  library(DataCombine)
-  library(psych)
-  library(foreach)
-  library(doMC)
-  library(snow) 
-  library(doSNOW)
-  registerDoMC(cores=8)
-  registerDoSNOW(makeCluster(8, type="SOCK")) 
-  library(doParallel)
-  registerDoParallel(makeCluster(8))
+  source("libraries.R")
   
   
   foreach(j = 1:1)%do%{
@@ -138,74 +126,6 @@ getStateData <- function(Year){
                  "index" = filter(crime.index, year == Year))
     
   } -> results; rm(j)
-  
-  # 
-  # data1 = data.frame()
-  # data2 = data.frame()
-  # data3 = data.frame()
-  # 
-  # 
-  # foreach(j = 1:length(results)) %do% {
-  #   data1 = rbind(data1, results[[j]][[1]])
-  #   data2 = rbind(data2, results[[j]][[2]])
-  #   data3 = rbind(data3, results[[j]][[3]])
-  # }
-  # 
-  # counties.name <- c("Allegany",
-  #                    "Anne Arundel",
-  #                    "Baltimore City",
-  #                    "Baltimore County",
-  #                    "Calvert",
-  #                    "Caroline",
-  #                    "Carroll",
-  #                    "Cecil",
-  #                    "Charles",
-  #                    "Dochester",
-  #                    "Frederick",
-  #                    "Garrett",
-  #                    "Harford",
-  #                    "Howard",
-  #                    "Kent",
-  #                    "Montgomery",
-  #                    "Prince Georges",
-  #                    "Queen Anne",
-  #                    "Somerset",
-  #                    "St Marry",
-  #                    "Talbot",
-  #                    "Washingtion",
-  #                    "Wicomico",
-  #                    "Worchester")
-  # 
-  # 
-  # counties.code <- c(24001,24003,
-  #                    24510,24005,
-  #                    24009,24011,
-  #                    24013,24015,
-  #                    24017,24019,
-  #                    24021,24023,
-  #                    24025,24027,
-  #                    24029,24031,
-  #                    24033,24035,
-  #                    24039,24037,
-  #                    24041,24043,
-  #                    24045,24047)
-  # 
-  # data1$region <- counties.code
-  # data2$region <- counties.code
-  # data3$region <- counties.code
-  # 
-  # 
-  # data1$county <- counties.name
-  # data2$county <- counties.name
-  # data3$county <- counties.name
-  # 
-  # data1$year <- NULL
-  # data2$year <- NULL
-  # data3$year <- NULL
-  # 
-  # data3$value <- data3$index
-  # data3$index <- NULL
-  # 
  
   list("property" =results[[1]]$property,
        "violent" = results[[1]]$violent,

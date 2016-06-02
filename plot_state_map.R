@@ -1,19 +1,6 @@
 plot_state_map <- function(df){
-  
-  library(scales)
-  library(data.table)
-  library(plotly)
-  library(choroplethr)
-  library(choroplethrMaps)
-  library(dplyr)
-  library(foreach)
-  library(doMC)
-  library(snow) 
-  library(doSNOW)
-  registerDoMC(cores=8)
-  registerDoSNOW(makeCluster(8, type="SOCK")) 
-  library(doParallel)
-  registerDoParallel(makeCluster(8))
+ 
+  source("libraries.R")
   
   plot <- county_choropleth(select(df$mapping, c(2,4)),
                             state_zoom = c("maryland"),

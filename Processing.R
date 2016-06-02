@@ -1,4 +1,5 @@
-# selected.year <- 2013
+source("helpers.R")
+# selected.year <- 1999
 # counties.data <- getCountiesData(selected.year)
 # state.data <- getStateData(selected.year)
 
@@ -9,10 +10,10 @@
 # print(donut.graphs$property)
 # print(donut.graphs$violent)
 
-
-state.map <-  plot_state_map(counties.data)
-print(state.map)
- 
+# 
+# state.map <-  plot_state_map(counties.data)
+# print(state.map)
+#  
 # rm(selected.year)
 
 

@@ -1,19 +1,6 @@
 getCountiesData <- function(Year){
   
-  library(XLConnect)
-  library(data.table)
-  library(dplyr)
-  library(DataCombine)
-  library(psych)
-  library(foreach)
-  library(doMC)
-  library(snow) 
-  library(doSNOW)
-  registerDoMC(cores=8)
-  registerDoSNOW(makeCluster(8, type="SOCK")) 
-  library(doParallel)
-  registerDoParallel(makeCluster(8))
-  
+  source("libraries.R")
   
   foreach(j = 2:25)%do%{
     

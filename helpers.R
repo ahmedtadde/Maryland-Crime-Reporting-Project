@@ -132,9 +132,9 @@ getStateData <- function(Year){
       return(result)
     }
     x <- apply(select(property, c(2,3,4)), 1, scale.down )
-    property$average <- x; rm(x)
+    property$weighted_average <- x; rm(x)
     
-    averages <-  data.table("property.avg"= property$average,
+    averages <-  data.table("property.avg"= property$weighted_average,
                             "violent.avg" = violent$weighted_average)
     
     
@@ -392,7 +392,7 @@ plot_main_graph <- function(df){
     type = "bar")
   
   p <- layout(p,
-              title = "Crime Summary",
+              # title = "Crime Summary",
               xaxis = list(title = "", showgrid = F),
               yaxis = list(title = "Total", showgrid = F)
   )
@@ -435,7 +435,7 @@ plot_donut_graphs <- function(df){
                      values = total,
                      type = "pie",
                      colors = "Reds",
-                     hole = 0.7,
+                     hole = 0.65,
                      showlegend = T
   ) %>%
     layout(title = "Violent Crimes Breakdown")
@@ -445,7 +445,7 @@ plot_donut_graphs <- function(df){
                       values = total,
                       type = "pie",
                       colors = "Blues",
-                      hole = 0.7,
+                      hole = 0.65,
                       showlegend = T) %>%
     layout(title = "Property Theft Breakdown")
   
@@ -458,7 +458,7 @@ plot_state_map <- function(df){
   
   plot <- county_choropleth(select(df$mapping, c(2,4)),
                             state_zoom = c("maryland"),
-                            title = "2013 Crime Choropleth Map",
+                            # title = "2013 Crime Choropleth Map",
                             legend = "Crime level")+
     scale_fill_brewer(palette = "OrRd",
                       type = "seq",
@@ -492,7 +492,7 @@ plot_state_map <- function(df){
                                "label" = state.names)
   
   
-  text.locations$label[which(text.locations$region == 24510)] <- "Baltimore City"
+  text.locations$label[which(text.locations$region == 24510)] <- ""
   
   rm(i); rm(state.map); rm(state.codes) ; rm(state.names)
   
@@ -512,6 +512,34 @@ plot_state_map <- function(df){
   
   return(plot)
 }
+
+
+
+
+
+# get_percent_changes <- function(df){
+#   
+#   data <- data.table(df$violent)
+#   data <- select(data, c(6:9,11))
+#   changes_violent <- list("murder" = data$murder_percent_change,
+#                           "rape" = data$rape_percent_change,
+#                           "robbery"= data$robbery_percent_change,
+#                           "assault" = data$aggravated_assault_percent_change,
+#                           "violent" = data$violent_percent_change)
+#   
+#   
+#   
+#   data <- data.table(df$property)
+#   data <- select(data, c(5:7,9))
+#   changes_property <- list("breaking_entering" = data$breaking_entering_percent_change,
+#                            "larceny" = data$larceny_theft_percnt_change,
+#                            "vehicule_theft" = data$motor_vehicule_theft_percent_change,
+#                            "property" = data$property_crime_percent_change)
+#   
+#   return(list("violent" = changes_violent, "property" = changes_property))
+#   
+# }
+
 
 
  

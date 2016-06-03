@@ -1,7 +1,8 @@
 source("helpers.R")
-# selected.year <- 1999
+libraries()
+selected.year <- 1999
 # counties.data <- getCountiesData(selected.year)
-# state.data <- getStateData(selected.year)
+state.data <- getStateData(selected.year)
 
 # main.graph <- plot_main_graph(state.data)
 # print(main.graph)

@@ -2,6 +2,9 @@
 
 libraries <- function(){
   
+  library(rsconnect)
+  library(rio)
+  library(RCurl)
   library(shiny)
   library(shinythemes)
   library(XLConnect)

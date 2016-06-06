@@ -36,79 +36,79 @@ shinyServer(function(input, output) {
 
   })
   
-  # output$murder <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$violent$murder
-  #   
-  #   
-  # })
-  # 
-  # output$rape <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$violent$rape
-  #   
-  #   
-  # })
-  # 
-  # output$robbery <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$violent$robbery
-  #   
-  #   
-  # })
-  # 
-  # 
-  # output$assault <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$violent$assault
-  #   
-  #   
-  # })
-  # 
-  # output$violent <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$violent$violent
-  #   
-  #   
-  # })
-  # 
-  # 
-  # output$breaking_entering <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$property$breaking_entering
-  #   
-  #   
-  # })
-  # 
-  # 
-  # output$larceny <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$property$larceny
-  #   
-  #   
-  # })
-  # 
-  # 
-  # output$vehicule_theft <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$property$vehicule_theft
-  #   
-  #   
-  # })
-  # 
-  # output$property <- renderText({
-  #   selected.year <- input$year
-  #   state.data <- getStateData(selected.year)
-  #   get_percent_changes(state.data)$property$property
-  #   
-  #   
-  # })
+  output$murder <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$violent$murder
+
+
+  })
+
+  output$rape <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$violent$rape
+
+
+  })
+
+  output$robbery <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$violent$robbery
+
+
+  })
+
+
+  output$assault <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$violent$assault
+
+
+  })
+
+  output$violent <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$violent$violent
+
+
+  })
+
+
+  output$breaking_entering <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$property$breaking_entering
+
+
+  })
+
+
+  output$larceny <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$property$larceny
+
+
+  })
+
+
+  output$vehicule_theft <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$property$vehicule_theft
+
+
+  })
+
+  output$property <- renderText({
+    selected.year <- input$year
+    state.data <- getStateData(selected.year)
+    get_percent_changes(state.data)$property$property
+
+
+  })
 })

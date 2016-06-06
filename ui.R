@@ -1,5 +1,7 @@
 library(shinythemes)
-source('helpers.R')
+source("helpers.R")
+libraries()
+
 
 
 shinyUI(fluidPage(theme = shinytheme("united"),
@@ -31,35 +33,28 @@ shinyUI(fluidPage(theme = shinytheme("united"),
                                  h2("Percent change relative to previous year"),
                                  br(),
                                  br(),
+                                 em("Murder:  "), textOutput("murder", inline = TRUE),
+                                 br(),
+                                 em("Rape:  "), textOutput("rape", inline = TRUE),
+                                 br(),
+                                 em("Robbery:  "),textOutput("robbery", inline = TRUE),
+                                 br(),
+                                 em("Aggravated Assault:  "),textOutput("assault", inline = TRUE),
                                  br(),
                                  br(),
-                                 em("Murder:"),
-                                 # textOutput("murder"),
-                                 br(),
-                                 em("Rape:"),
-                                 # textOutput("rape"),
-                                 br(),
-                                 em("Robbery:"),
-                                 # textOutput("robbery"),
-                                 br(),
-                                 em("Aggravated Assault:"),
-                                 # textOutput("assault"),
-                                 br(), 
-                                 h4("Total Violent Crimes:",style = "color:red"),
-                                 # textOutput("violent"),
+                                 strong("Total Violent Crimes:  ",style = "color:red"),textOutput("violent", inline = TRUE),
                                  br(),
                                  br(),
-                                 em("Breaking & Entering:"),
-                                 # textOutput("breaking_entering"),
                                  br(),
-                                 em("Larceny/Theft:"),
                                  br(),
-                                 # textOutput("larceny"),
-                                 em("Motor Vehicule Theft:"),
-                                 # textOutput("vehicule_theft"),
+                                 em("Breaking & Entering:  "),textOutput("breaking_entering", inline = TRUE),
                                  br(),
-                                 # textOutput("property")),)
-                                 h4("Total Property Crimes:",style = "color:red")
+                                 em("Larceny/Theft:  "),textOutput("larceny", inline = TRUE),
+                                 br(),
+                                 em("Motor Vehicule Theft:  "),textOutput("vehicule_theft", inline = TRUE),
+                                 br(),
+                                 br(),
+                                 strong("Total Property Crimes:  ",style = "color:red"),textOutput("property", inline = TRUE)
                                  )
                         )
                       )

@@ -492,7 +492,7 @@ plot_state_map <- function(df){
                                "label" = state.names)
   
   
-  text.locations$label[which(text.locations$region == 24510)] <- ""
+  text.locations$label[which(text.locations$region == 24510)] <- "Baltimore City"
   
   rm(i); rm(state.map); rm(state.codes) ; rm(state.names)
   
@@ -517,28 +517,37 @@ plot_state_map <- function(df){
 
 
 
-# get_percent_changes <- function(df){
-#   
-#   data <- data.table(df$violent)
-#   data <- select(data, c(6:9,11))
-#   changes_violent <- list("murder" = data$murder_percent_change,
-#                           "rape" = data$rape_percent_change,
-#                           "robbery"= data$robbery_percent_change,
-#                           "assault" = data$aggravated_assault_percent_change,
-#                           "violent" = data$violent_percent_change)
-#   
-#   
-#   
-#   data <- data.table(df$property)
-#   data <- select(data, c(5:7,9))
-#   changes_property <- list("breaking_entering" = data$breaking_entering_percent_change,
-#                            "larceny" = data$larceny_theft_percnt_change,
-#                            "vehicule_theft" = data$motor_vehicule_theft_percent_change,
-#                            "property" = data$property_crime_percent_change)
-#   
-#   return(list("violent" = changes_violent, "property" = changes_property))
-#   
-# }
+get_percent_changes <- function(df){
+
+  data <- data.table(df$violent)
+  data <- select(data, c(6:9,11))
+  changes_violent <- list("murder" = round(as.numeric(data$murder_percent_change),2),
+                          "rape" = round(as.numeric(data$rape_percent_change),2),
+                          "robbery"= round(as.numeric(data$robbery_percent_change),2),
+                          "assault" = round(as.numeric(data$aggravated_assault_percent_change),2),
+                          "violent" = round(as.numeric(data$violent_crime_percent_change),2)
+                          )
+
+  foreach(i = 1:length(changes_violent)) %do% {
+    changes_violent[[i]] <- paste0(as.character(changes_violent[[i]]),"%")
+  }
+
+
+  data <- data.table(df$property)
+  data <- select(data, c(5:7,9))
+  changes_property <- list("breaking_entering" = round(as.numeric(data$breaking_entering_percent_change),2),
+                           "larceny" = round(as.numeric(data$larceny_theft_percent_change), 2),
+                           "vehicule_theft" = round(as.numeric(data$motor_vehicule_theft_percent_change), 2),
+                           "property" = round(as.numeric(data$property_crime_percent_change),2)
+                           )
+  
+  foreach(i = 1:length(changes_property)) %do% {
+    changes_property[[i]] <- paste0(as.character(changes_property[[i]]),"%")
+  }; rm(i)
+
+  return(list("violent" = changes_violent, "property" = changes_property))
+
+}
 
 
 

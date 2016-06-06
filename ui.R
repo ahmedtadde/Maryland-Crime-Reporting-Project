@@ -7,7 +7,7 @@ libraries()
 shinyUI(fluidPage(theme = shinytheme("united"),
                   titlePanel("Maryland Crime Reporting"),
                   sidebarLayout(
-                    sidebarPanel(helpText("Create choropleth of crime level"),
+                    sidebarPanel(helpText(""),
                                   
                                   selectInput("year", 
                                               label = "Choose Year",

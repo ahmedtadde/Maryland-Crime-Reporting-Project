@@ -1,5 +1,5 @@
-# source("helpers.R")
-# libraries()
+source("helpers.R")
+libraries()
 # selected.year <- 2013
 # counties.data <- getCountiesData(selected.year)
 # state.data <- getStateData(selected.year)
@@ -17,8 +17,6 @@
 #  
 # rm(selected.year)
 
-
-
-
-
+# x <- counties_DT(counties.data)
+# View(x)
 

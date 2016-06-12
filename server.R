@@ -111,4 +111,17 @@ shinyServer(function(input, output) {
 
 
   })
+  
+  output$counties.table<- DT::renderDataTable({
+    
+    selected.year <- input$year
+    counties.data <- getCountiesData(selected.year)
+    data <- counties_DT(counties.data)
+    DT::datatable(data)
+    
+  })
+  
+  
+  
+  
 })

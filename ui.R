@@ -18,7 +18,20 @@ shinyUI(fluidPage(theme = shinytheme("united"),
                     
                     mainPanel(
                       tabsetPanel(
-                        tabPanel("Map", plotlyOutput("map")), 
+                        tabPanel("Map",
+                                 # DT::dataTableOutput("counties.table")
+                                 # dataTableOutput("counties.table")
+                                 
+                                 fluidRow(
+                                   column(12, align= "center",plotlyOutput("map"))
+                                   ),
+
+                                 fluidRow(
+                                   column(12,
+                                          DT::dataTableOutput("counties.table"
+                                                              ))
+                                   )
+                                 ), 
                         
                         tabPanel("Summary",
                                  

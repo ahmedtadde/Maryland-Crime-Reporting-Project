@@ -3,10 +3,8 @@
 libraries <- function(){
   
   library(rsconnect)
-  library(rio)
-  library(RCurl)
+  library(DT)
   library(shiny)
-  library(shinythemes)
   library(XLConnect)
   library(DataCombine)
   library(psych)
@@ -489,7 +487,7 @@ plot_state_map <- function(df){
                                "label" = state.names)
   
   
-  text.locations$label[which(text.locations$region == 24510)] <- "Baltimore City"
+  text.locations$label[which(text.locations$region == 24510)] <- ""
   
   rm(i); rm(state.map); rm(state.codes) ; rm(state.names)
   
@@ -546,6 +544,31 @@ get_percent_changes <- function(df){
 
 }
 
+
+
+
+counties_DT <- function(df){
+  data1 <- df$violent %>% select(c(13,1:4,9)) 
+  setnames(data1, names(data1), c("County",
+                                  "Murder", "Rape",
+                                  "Robbery", "Aggravated Assault",
+                                  "Total Violent Crimes"))
+  
+  
+  data2 <- df$property %>% select(c(1:3,7))
+  setnames(data2, names(data2), c( 
+                                  "Breaking and Entering",
+                                  "Larceny Theft", 
+                                  "Motor Vehicule",
+                                  "Total Property Crimes"))
+  
+  data3 <- df$mapping %>% select(c(1,4))
+  setnames(data3, names(data3), c("Crime Index", "Crime Level"))
+  
+  data <- data.table(data1, data2,data3)
+  
+  return(data)
+}
 
 
  

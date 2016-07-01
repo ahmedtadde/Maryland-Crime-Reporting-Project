@@ -387,6 +387,7 @@ plot_main_graph <- function(df){
     type = "bar")
   
   p <- layout(p,
+              autosize = F, width = 800, height = 300,
               # title = "Crime Summary",
               xaxis = list(title = "", showgrid = F),
               yaxis = list(title = "Total", showgrid = F)
@@ -430,19 +431,21 @@ plot_donut_graphs <- function(df){
                      values = total,
                      type = "pie",
                      colors = "Reds",
-                     hole = 0.65,
+                     hole = 0.6,
                      showlegend = T
   ) %>%
-    layout(title = "Violent Crimes Breakdown")
+    layout(title = "Violent Crimes Breakdown",
+           autosize = F, width = 500, height = 300)
   
   property <- plot_ly(property.df,
                       labels = property_type,
                       values = total,
                       type = "pie",
                       colors = "Blues",
-                      hole = 0.65,
+                      hole = 0.6,
                       showlegend = T) %>%
-    layout(title = "Property Theft Breakdown")
+    layout(title = "Property Theft Breakdown",
+           autosize = F, width = 500, height = 300)
   
   return(list("property" = property, "violent" =violent))
 }
@@ -500,7 +503,8 @@ plot_state_map <- function(df){
   
   plot <- plotly_build(plot)
   foreach( i = 1:length(plot$data)) %do% {
-    # plot$data[[i]]$text <- paste(text.locations$label, "<br>")
+    # plot$data[[i]]$text <- paste("Total Violent Crime", "<br>",
+    #                              "Total Property Crime", "<br>")
     plot$data[[i]]$hoverinfo <- "none"
     
   };rm(text.locations)

@@ -10,11 +10,4 @@ libraries <- function(){
       library(choroplethrMaps)
       library(dplyr)
       library(foreach)
-      library(doMC)
-      library(snow)
-      library(doSNOW)
-      registerDoMC(cores=8)
-      registerDoSNOW(makeCluster(8, type="SOCK"))
-      library(doParallel)
-      registerDoParallel(makeCluster(8))
     }
